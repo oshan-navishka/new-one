@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ashini ❤</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#2b1220;
+    --bg-mid:#3d1a2e;
+    --bg-card:#43203a;
+    --rose:#e8a0b4;
+    --gold:#d9b171;
+    --cream:#f7e9df;
+    --heart:#d6455f;
+    --muted:#b98a9a;
+  }
+
+  *{box-sizing:border-box;}
+
+  html,body{
+    margin:0;
+    padding:0;
+    background:var(--bg-deep);
+    color:var(--cream);
+    font-family:'Nunito', sans-serif;
+    overflow-x:hidden;
+  }
+
+  .glow{
+    position:fixed;
+    top:-20%;
+    left:50%;
+    transform:translateX(-50%);
+    width:900px;
+    height:900px;
+    background:radial-gradient(circle, rgba(232,160,180,0.18) 0%, rgba(43,18,32,0) 65%);
+    pointer-events:none;
+    z-index:0;
+  }
+
+  .floaters{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:0;
+    overflow:hidden;
+  }
+  .floaters span{
+    position:absolute;
+    bottom:-40px;
+    font-size:18px;
+    color:var(--rose);
+    opacity:0.25;
+    animation:rise linear infinite;
+  }
+  @keyframes rise{
+    to{ transform:translateY(-110vh) rotate(20deg); opacity:0; }
+  }
+
+  main{
+    position:relative;
+    z-index:1;
+    max-width:640px;
+    margin:0 auto;
+    padding:80px 24px 120px;
+  }
+
+  section{
+    margin-bottom:88px;
+  }
+
+  .eyebrow{
+    color:var(--gold);
+    font-size:14px;
+    letter-spacing:0.3px;
+    margin:0 0 10px;
+  }
+
+  h1.name{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    font-size:clamp(48px, 12vw, 84px);
+    margin:0;
+    line-height:1;
+    color:var(--cream);
+  }
+
+  .tagline{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:22px;
+    color:var(--rose);
+    margin:14px 0 0;
+  }
+
+  .counter-label{
+    margin:40px 0 14px;
+    color:var(--muted);
+    font-size:15px;
+  }
+
+  .counter{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:10px;
+  }
+
+  .stat{
+    background:var(--bg-card);
+    border-radius:14px;
+    padding:16px 6px;
+    text-align:center;
+  }
+
+  .stat .num{
+    font-family:'Cormorant Garamond', serif;
+    font-size:32px;
+    font-weight:600;
+    color:var(--gold);
+    display:block;
+  }
+
+  .stat .unit{
+    font-size:12px;
+    color:var(--muted);
+  }
+
+  .card{
+    background:var(--bg-mid);
+    border-radius:20px;
+    padding:36px 30px;
+    text-align:center;
+  }
+
+  .card .icon{
+    font-size:30px;
+    margin-bottom:14px;
+  }
+
+  .card .date{
+    font-family:'Cormorant Garamond', serif;
+    font-size:26px;
+    color:var(--cream);
+    margin:0 0 8px;
+  }
+
+  .card p{
+    color:var(--muted);
+    font-size:15.5px;
+    line-height:1.6;
+    margin:0;
+  }
+
+  h2.section-title{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    font-size:32px;
+    text-align:center;
+    margin:0 0 8px;
+  }
+
+  .section-sub{
+    text-align:center;
+    color:var(--muted);
+    font-size:15px;
+    margin:0 0 30px;
+  }
+
+  .game-box{
+    background:var(--bg-mid);
+    border-radius:20px;
+    padding:36px 26px;
+    text-align:center;
+  }
+
+  .heart-btn{
+    background:none;
+    border:none;
+    font-size:64px;
+    cursor:pointer;
+    line-height:1;
+    transition:transform 0.15s ease;
+    filter:drop-shadow(0 4px 10px rgba(214,69,95,0.35));
+  }
+  .heart-btn:active{
+    transform:scale(0.85);
+  }
+
+  .progress-track{
+    background:rgba(255,255,255,0.08);
+    border-radius:999px;
+    height:12px;
+    margin:26px 0 10px;
+    overflow:hidden;
+  }
+  .progress-fill{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg, var(--heart), var(--gold));
+    border-radius:999px;
+    transition:width 0.25s ease;
+  }
+
+  .progress-text{
+    color:var(--muted);
+    font-size:14px;
+  }
+
+  .letter{
+    background:var(--bg-mid);
+    border-radius:20px;
+    padding:40px 32px;
+    opacity:0;
+    max-height:0;
+    overflow:hidden;
+    transition:opacity 0.8s ease, max-height 1.2s ease, padding 0.8s ease;
+  }
+  .letter.show{
+    opacity:1;
+    max-height:900px;
+    padding:40px 32px;
+  }
+  .letter .icon{
+    text-align:center;
+    font-size:26px;
+    margin-bottom:18px;
+  }
+  .letter p{
+    font-size:16.5px;
+    line-height:1.9;
+    color:var(--cream);
+    margin:0 0 16px;
+  }
+  .letter .sign{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:22px;
+    color:var(--rose);
+    text-align:right;
+    margin-top:24px;
+  }
+
+  footer{
+    text-align:center;
+    color:var(--muted);
+    font-size:13px;
+    padding-bottom:20px;
+  }
+
+  .music-btn{
+    position:fixed;
+    bottom:22px;
+    right:22px;
+    z-index:5;
+    background:var(--bg-card);
+    color:var(--cream);
+    border:1px solid rgba(232,160,180,0.35);
+    border-radius:999px;
+    padding:12px 18px;
+    font-size:14px;
+    font-family:'Nunito', sans-serif;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.35);
+  }
+  .music-btn .bar{
+    width:3px;
+    height:10px;
+    background:var(--gold);
+    display:inline-block;
+    border-radius:2px;
+  }
+  .music-btn.playing .bar{
+    animation:bounce 0.9s ease-in-out infinite;
+  }
+  .music-btn .bar:nth-child(2){ animation-delay:0.15s; }
+  .music-btn .bar:nth-child(3){ animation-delay:0.3s; }
+  @keyframes bounce{
+    0%,100%{ height:6px; }
+    50%{ height:14px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .floaters span, .music-btn.playing .bar{ animation:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="glow"></div>
+<div class="floaters" id="floaters"></div>
+
+<main>
+
+  <section>
+    <p class="eyebrow">ආශිනීට</p>
+    <h1 class="name">Ashini</h1>
+    <p class="tagline">ලෝකේ අහුලාගත්ත ලස්සනම දේ ඔයා</p>
+
+    <p class="counter-label">අපි එකට ගත කරපු කාලය</p>
+    <div class="counter">
+      <div class="stat"><span class="num" id="d">0</span><span class="unit">දවස්</span></div>
+      <div class="stat"><span class="num" id="h">0</span><span class="unit">පැය</span></div>
+      <div class="stat"><span class="num" id="m">0</span><span class="unit">මිනිත්තු</span></div>
+      <div class="stat"><span class="num" id="s">0</span><span class="unit">තප්පර</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="card">
+      <div class="icon">🕊️</div>
+      <p class="date">2026 සැප්තැම්බර් 01 · රාත්‍රී 01:10</p>
+      <p>මේ මොහොතේ ඉඳන් තමයි මගේ ලෝකෙට ඔයාගේ නම එකතු වුණේ.<br>ඉතින් ඉන් පස්සේ, හැම තප්පරයක්ම වටිනවා.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">පොඩි සෙල්ලමක් 💗</h2>
+    <p class="section-sub">හදවත click කරලා ආදරය පුරවන්න</p>
+    <div class="game-box">
+      <button class="heart-btn" id="heartBtn">💗</button>
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <p class="progress-text" id="progressText">0% පිරිලා</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="letter" id="letter">
+      <div class="icon">💌</div>
+      <p>ආශිනී,</p>
+      <p>ඔයා මගේ ජීවිතේට ආපු දවසේ ඉඳන්, හැම දවසක්ම ටිකක් වඩාත් lassana වෙලා. උදේට එන message එකේ ඉඳන්, රෑට කතා කරන ඒ පොඩි වෙලාව වෙනකම්, ඔයා ගැන හිතන හැම මොහොතක්ම මට සතුටක්.</p>
+      <p>ඔයාගේ සිනහව, ඔයාගේ care එක, ඔයා කරන ඒ පොඩි පොඩි දේවල් - ඒවා කිසිම දෙයක් නෙවෙයි කියලා ඔයාට හිතුනත්, ඒවා තමයි මගේ දවසම හදන්නේ.</p>
+      <p>මේක ලොකු දෙයක් නෙවෙයි - ඔයාට විතරක් හදපු පොඩි දෙයක්. ඒත් හැම line එකෙන්ම කියවෙන්නේ එකම දෙයයි.</p>
+      <p class="sign">ආදරෙයි ඔයාට, අද වගේම හැමදාමත් 💕</p>
+    </div>
+  </section>
+
+  <footer>made with 💗 for Ashini</footer>
+</main>
+
+<button class="music-btn" id="musicBtn">
+  <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+  <span id="musicLabel">සංගීතය</span>
+</button>
+
+<script>
+  // floating background hearts
+  const floaters = document.getElementById('floaters');
+  const glyphs = ['♥','❁','✿'];
+  for(let i=0;i<14;i++){
+    const el = document.createElement('span');
+    el.textContent = glyphs[i % glyphs.length];
+    el.style.left = Math.random()*100 + 'vw';
+    el.style.fontSize = (12 + Math.random()*16) + 'px';
+    el.style.animationDuration = (10 + Math.random()*14) + 's';
+    el.style.animationDelay = (Math.random()*10) + 's';
+    floaters.appendChild(el);
+  }
+
+  // live love counter
+  const startDate = new Date('2026-09-01T01:10:00');
+  const dEl = document.getElementById('d');
+  const hEl = document.getElementById('h');
+  const mEl = document.getElementById('m');
+  const sEl = document.getElementById('s');
+
+  function tick(){
+    const now = new Date();
+    let diff = Math.max(0, now - startDate);
+    const totalSec = Math.floor(diff/1000);
+    const days = Math.floor(totalSec / 86400);
+    const hours = Math.floor((totalSec % 86400) / 3600);
+    const mins = Math.floor((totalSec % 3600) / 60);
+    const secs = totalSec % 60;
+    dEl.textContent = days;
+    hEl.textContent = hours;
+    mEl.textContent = mins;
+    sEl.textContent = secs;
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  // heart clicker game
+  const heartBtn = document.getElementById('heartBtn');
+  const progressFill = document.getElementById('progressFill');
+  const progressText = document.getElementById('progressText');
+  const letter = document.getElementById('letter');
+  let progress = 0;
+  let unlocked = false;
+
+  heartBtn.addEventListener('click', () => {
+    if(unlocked) return;
+    progress = Math.min(100, progress + 8);
+    progressFill.style.width = progress + '%';
+    progressText.textContent = progress + '% පිරිලා';
+    heartBtn.style.transform = 'scale(1.15)';
+    setTimeout(() => { heartBtn.style.transform = 'scale(1)'; }, 120);
+
+    if(progress >= 100 && !unlocked){
+      unlocked = true;
+      progressText.textContent = 'සම්පූර්ණයි 💗';
+      heartBtn.textContent = '💖';
+      setTimeout(() => {
+        letter.classList.add('show');
+        letter.scrollIntoView({behavior:'smooth', block:'center'});
+      }, 400);
+    }
+  });
+
+  // background music - synthesized soft music-box melody (no external files)
+  let audioCtx = null;
+  let musicPlaying = false;
+  let musicTimer = null;
+  const musicBtn = document.getElementById('musicBtn');
+  const musicLabel = document.getElementById('musicLabel');
+
+  // simple gentle melody, pentatonic, loops softly
+  const melody = [523.25, 587.33, 659.25, 783.99, 880.00, 783.99, 659.25, 587.33];
+  let noteIndex = 0;
+
+  function playNote(freq, time){
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(freq, time);
+    gain.gain.setValueAtTime(0, time);
+    gain.gain.linearRampToValueAtTime(0.06, time + 0.05);
+    gain.gain.exponentialRampToValueAtTime(0.001, time + 0.9);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start(time);
+    osc.stop(time + 1);
+  }
+
+  function scheduleLoop(){
+    if(!musicPlaying) return;
+    const now = audioCtx.currentTime;
+    playNote(melody[noteIndex % melody.length], now);
+    noteIndex++;
+    musicTimer = setTimeout(scheduleLoop, 650);
+  }
+
+  musicBtn.addEventListener('click', () => {
+    if(!audioCtx){
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if(audioCtx.state === 'suspended'){
+      audioCtx.resume();
+    }
+    musicPlaying = !musicPlaying;
+    musicBtn.classList.toggle('playing', musicPlaying);
+    musicLabel.textContent = musicPlaying ? 'නවත්තන්න' : 'සංගීතය';
+    if(musicPlaying){
+      scheduleLoop();
+    } else {
+      clearTimeout(musicTimer);
+    }
+  });
+</script>
+
+</body>
+</html>
